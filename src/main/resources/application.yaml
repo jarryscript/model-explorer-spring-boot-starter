@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/qronus
+    username: postgres
+    password: admin123
+    hikari:
+      maximum-pool-size: 5
+server:
+  servlet:
+    context-path: /model-explorer
+
+model-explorer:
+  scanPackages:
+    - io.github.jarryzhou.modelexplorer.entity

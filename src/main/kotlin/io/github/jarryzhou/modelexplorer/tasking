@@ -1,0 +1,11 @@
+#1 ensure db table
+
+#2 get checksum from current table
+
+#3 get checksum from package to generate, and compare with #2
+
+#4 generate plantuml if checksum changes
+
+#5 provide pagination api to load records
+
+#6 show in web page.
