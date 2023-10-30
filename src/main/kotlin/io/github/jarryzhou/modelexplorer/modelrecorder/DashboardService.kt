@@ -1,6 +1,6 @@
-package io.github.jarryzhou.modelexplorer.ui
+package io.github.jarryzhou.modelexplorer.modelrecorder
 
-import io.github.jarryzhou.modelexplorer.modelrecorder.ModelRecorder
+import io.github.jarryzhou.modelexplorer.ui.ModelDto
 import org.springframework.stereotype.Component
 
 @Component
