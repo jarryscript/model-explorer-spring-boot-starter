@@ -9,4 +9,6 @@ import org.springframework.context.annotation.Configuration
 class ModelRecorderConfiguration {
     var scanPackages: List<String>? = emptyList()
     var hideClasses: List<String>? = emptyList()
+    var activeProfiles: List<String>? = emptyList()
+    var enable: Boolean? = true
 }
