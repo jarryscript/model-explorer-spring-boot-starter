@@ -28,6 +28,8 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("de.elnarion.util:plantuml-generator-util:2.3.0")
     implementation("net.sourceforge.plantuml:plantuml:1.2021.4")
+
+    testImplementation("com.ninja-squad:springmockk:4.0.0")
 }
 
 

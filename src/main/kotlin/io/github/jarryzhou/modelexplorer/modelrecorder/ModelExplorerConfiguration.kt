@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration
 
 @ConfigurationProperties(prefix = "model-explorer")
 @Configuration
-class ModelRecorderConfiguration {
+class ModelExplorerConfiguration {
     var scanPackages: List<String>? = emptyList()
     var hideClasses: List<String>? = emptyList()
     var activeProfiles: List<String>? = emptyList()

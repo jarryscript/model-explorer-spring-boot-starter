@@ -13,7 +13,8 @@ class DashboardController(private val dashboardService: DashboardService) {
 
     @GetMapping
     fun index(model: Model): String? {
-        model.addAttribute(ATTRIBUTE_MODELS, dashboardService.loadModels())
+        dashboardService.reload()
+        model.addAttribute(ATTRIBUTE_MODELS, dashboardService.loadAll())
         return VIEW_MODEL_DASHBOARD
     }
 
