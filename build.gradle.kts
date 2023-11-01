@@ -29,6 +29,10 @@ dependencies {
     implementation("de.elnarion.util:plantuml-generator-util:2.3.0")
     implementation("net.sourceforge.plantuml:plantuml:1.2021.4")
 
+    implementation("org.springframework.boot:spring-boot-configuration-processor:3.1.5")
+    implementation("org.springframework.boot:spring-boot-autoconfigure:3.1.5")
+
+
     testImplementation("com.ninja-squad:springmockk:4.0.0")
 }
 
@@ -40,5 +44,18 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "io.github.jarryzhou"
+            artifactId = "model-explorer"
+            version = "0.1.0"
+            from(components["java"])
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
 
 

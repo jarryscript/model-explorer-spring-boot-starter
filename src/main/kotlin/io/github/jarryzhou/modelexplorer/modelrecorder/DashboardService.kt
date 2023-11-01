@@ -37,7 +37,7 @@ private const val DATE_FORMAT = "dd/MM/yyyy HH:mm:ss"
 
 @Component
 class DashboardService(
-    private val jdbcTemplate: JdbcTemplate, private val modelExplorerConfiguration: ModelExplorerConfiguration
+    private val jdbcTemplate: JdbcTemplate, private val modelExplorerProperties: ModelExplorerProperties
 ) {
 
     private val logger = LoggerFactory.getLogger(DashboardService::class.java)
@@ -85,8 +85,8 @@ class DashboardService(
 
     private fun generateDiagram(): String {
         return PlantUMLClassDiagramGenerator(
-            PlantUMLClassDiagramConfigBuilder(modelExplorerConfiguration.scanPackages).withHideClasses(
-                modelExplorerConfiguration.hideClasses
+            PlantUMLClassDiagramConfigBuilder(modelExplorerProperties.scanPackages).withHideClasses(
+                modelExplorerProperties.hideClasses
             ).build()
         ).generateDiagramText()
     }
