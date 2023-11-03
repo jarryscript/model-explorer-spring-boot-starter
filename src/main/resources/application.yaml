@@ -1,14 +1,17 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/qronus
-    username: postgres
-    password: admin123
+    url: jdbc:postgresql://ep-lucky-queen-69256101.ap-southeast-1.aws.neon.tech/ptah?user=jarryscript&password=Q0l7YVmgzjaF
+    driver-class-name: org.postgresql.Driver
     hikari:
+      connection-timeout: 20000
       maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 300000
+      max-lifetime: 1800000
+      pool-name: MyHikariPool
 server:
   servlet:
     context-path: /model-explorer
 
 model-explorer:
-  scanPackages:
-    - io.github.jarryzhou.modelexplorer.entity
+  enabled: true

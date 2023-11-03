@@ -8,6 +8,7 @@ import net.sourceforge.plantuml.FileFormatOption
 import net.sourceforge.plantuml.SourceStringReader
 import org.slf4j.LoggerFactory
 import org.springframework.jdbc.core.JdbcTemplate
+import org.springframework.jdbc.core.RowMapper
 import org.springframework.stereotype.Component
 import java.io.ByteArrayOutputStream
 import java.sql.Timestamp
@@ -80,8 +81,12 @@ class DashboardService(
 
 
     private fun getLastDiagram(): String? {
-        return jdbcTemplate.queryForObject(SELECT_LAST_DIAGRAM_SQL, String::class.java)
+        val result = jdbcTemplate.query(SELECT_LAST_DIAGRAM_SQL, RowMapper { rs, _ ->
+            return@RowMapper rs.getString("diagram")
+        })
+        return result.firstOrNull()
     }
+
 
     private fun generateDiagram(): String {
         return PlantUMLClassDiagramGenerator(
