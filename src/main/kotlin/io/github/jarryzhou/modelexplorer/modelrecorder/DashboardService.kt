@@ -90,7 +90,7 @@ class DashboardService(
 
     private fun generateDiagram(): String {
         return PlantUMLClassDiagramGenerator(
-            PlantUMLClassDiagramConfigBuilder(modelExplorerProperties.scanPackages).withHideClasses(
+            PlantUMLClassDiagramConfigBuilder(modelExplorerProperties.scanPackages).withUseSmetana(true).withHideClasses(
                 modelExplorerProperties.hideClasses
             ).build()
         ).generateDiagramText()

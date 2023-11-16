@@ -28,7 +28,7 @@ dependencies {
     implementation("org.postgresql:postgresql")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("de.elnarion.util:plantuml-generator-util:2.3.0")
-    implementation("net.sourceforge.plantuml:plantuml:1.2021.4")
+    implementation("net.sourceforge.plantuml:plantuml:1.2023.12")
 
     implementation("org.springframework.boot:spring-boot-configuration-processor:3.1.5")
     implementation("org.springframework.boot:spring-boot-autoconfigure:3.1.5")

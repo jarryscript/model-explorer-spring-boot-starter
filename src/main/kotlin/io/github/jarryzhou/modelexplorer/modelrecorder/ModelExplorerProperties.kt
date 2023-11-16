@@ -13,5 +13,6 @@ class ModelExplorerProperties {
     var scanPackages: List<String>? = listOf("io.github.jarryzhou.modelexplorer")
     var hideClasses: List<String>? = emptyList()
     var activeProfiles: List<String>? = emptyList()
-    var enabled: Boolean? = false
+    var enabled: Boolean? = true
+    var persistHistory: Boolean?= true
 }

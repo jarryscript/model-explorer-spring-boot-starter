@@ -2,35 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Jarry Zhou">
   <title>Diagram Viewer</title>
-  <!-- Include Bootstrap CSS -->
-<!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
   <style>
-      /* Define some custom styles for the left and right sections */
-      #left-section {
-        padding: 20px;
-        background-color: #f8f9fa;
-        border: 1px solid #dee2e6;
-        border-radius: 5px;
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
-      #right-section {
-        padding: 20px;
-        background-color: #f8f9fa;
-        border: 1px solid #dee2e6;
-        border-radius: 5px;
-      }
-      /* Define some styles for the diagram image */
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-    </style>
-<!--  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+    }
+  </style>
+  <link href="../static/css/dashboard.css" rel="stylesheet" th:href="@{/css/dashboard.css}">
 </head>
 <body>
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
       <!-- Left section -->
       <div id="left-section">
         <h4>Diagrams</h4>
@@ -43,7 +40,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
       <!-- Right section -->
       <div id="right-section">
         <div  id="diagram-image"></div>
@@ -53,10 +50,8 @@
 </div>
 
 <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
-<script>
-      function showDiagram(content) {
-        document.getElementById("diagram-image").innerHTML=content;
-      }
-    </script>
+
 </body>
+<script src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script src="../static/js/dashboard.js" th:src="@{/js/dashboard.js}"></script>
 </html>
