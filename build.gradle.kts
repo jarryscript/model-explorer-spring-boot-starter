@@ -6,6 +6,7 @@ plugins {
     id("maven-publish")
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
+    jacoco
 }
 
 group = "io.github.jarryzhou"
