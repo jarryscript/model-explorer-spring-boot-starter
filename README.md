@@ -32,7 +32,7 @@ model-explorer:
       - com.test2
 ```
 
-3. Start your application and visit [{Your site}/model-explorer]({Your site}/model-explorer) to get to the web UI.
+3. Start your application and visit {Your site}/model-explorer to get to the web UI.
 Please make sure the page and the related static resources URLs are properly configured in your web security config.
 
 ## Contributing
