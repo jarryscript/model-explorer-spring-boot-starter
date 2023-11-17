@@ -25,31 +25,34 @@
   <link href="../static/css/dashboard.css" rel="stylesheet" th:href="@{/css/dashboard.css}">
 </head>
 <body>
+
+<!-- Dark Navbar -->
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand bg-dark" href="#">Diagram Viewer</a>
+  </div>
+</nav>
+
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-2">
-      <!-- Left section -->
       <div id="left-section">
         <h4>Diagrams</h4>
         <hr>
         <ul class="list-group">
-          <!-- Loop through the diagrams list and create a link for each diagram -->
           <li class="list-group-item" th:each="model: ${models}">
-            <a href="#" th:onclick="showDiagram([[${model.diagram}]])" th:text="${model.name}"></a>
+            <a href="#" th:onclick="showDiagram(this,[[${model.diagram}]])" th:text="${model.name}"></a>
           </li>
         </ul>
       </div>
     </div>
     <div class="col-md-10">
-      <!-- Right section -->
       <div id="right-section">
         <div  id="diagram-image"></div>
       </div>
     </div>
   </div>
 </div>
-
-<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
 
 </body>
 <script src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>

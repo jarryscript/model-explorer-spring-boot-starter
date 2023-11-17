@@ -98,3 +98,12 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+.list-group-item a {
+    text-decoration: none; /* removes underline */
+    color: inherit; /* keeps the color consistent */
+}
+
+.bg-dark a {
+    color: white; /* change color when clicked */
+}

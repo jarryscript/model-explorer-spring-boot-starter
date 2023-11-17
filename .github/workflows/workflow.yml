@@ -15,7 +15,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Compile
-      run: ./gradlew assemble
+      run: ./gradlew classes
 
     - name: Run tests with coverage
       run: ./gradlew test jacocoTestReport

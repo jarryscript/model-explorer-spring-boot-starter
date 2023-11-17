@@ -32,9 +32,8 @@ model-explorer:
       - com.test2
 ```
 
-3. Start your application and visit {Your host}/model-explorer to get to the web UI.
-By visiting the web UI, if model-explorer.persist is set to false, Model explorer will scan the specified packages and show class diagram.
-if model-explorer.persist is set to true, Model explorer will load class diagram history from database, and show diagram upon clicking a diagram title.
+3. Start your application and visit [{Your site}/model-explorer]({Your site}/model-explorer) to get to the web UI.
+Please make sure the page and the related static resources URLs are properly configured in your web security config.
 
 ## Contributing
 
