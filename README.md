@@ -35,6 +35,8 @@ model-explorer:
 3. Start your application and visit {Your site}/model-explorer to get to the web UI.
 Please make sure the page and the related static resources URLs are properly configured in your web security config.
 <img src="https://github.com/jarryscript/model-explorer-spring-boot-starter/assets/29606832/8723822f-c811-420d-9d1e-64e641940010" style="border:3px solid black;">
+
+
 ## Contributing
 
 If you would like to contribute to the Model Explorer project, please fork the repository and submit a pull request. If you find a bug or have a feature request, please create a new issue.
