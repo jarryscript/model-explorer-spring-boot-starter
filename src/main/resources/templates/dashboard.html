@@ -8,6 +8,12 @@
   <title>Diagram Viewer</title>
   <link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
   <style>
+      .wrapper {
+      min-height: calc(100vh - 3.5rem); /* 3.5rem is the approx height of the footer */
+      display:flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -23,9 +29,12 @@
     }
   </style>
   <link href="../static/css/dashboard.css" rel="stylesheet" th:href="@{/css/dashboard.css}">
+  <script src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/jquery-3.7.1.min.js}"></script>
+  <script src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+  <script src="../static/js/dashboard.js" th:src="@{/js/dashboard.js}"></script>
 </head>
 <body>
-
+<div class="wrapper">
 <!-- Dark Navbar -->
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
@@ -35,26 +44,30 @@
 
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-2">
-      <div id="left-section">
+    <div class="col-md-3">
+      <div class="d-flex align-items-center justify-content-between">
         <h4>Diagrams</h4>
-        <hr>
-        <ul class="list-group">
-          <li class="list-group-item" th:each="model: ${models}">
-            <a href="#" th:onclick="showDiagram(this,[[${model.diagram}]])" th:text="${model.name}"></a>
-          </li>
-        </ul>
+        <button class="reload-btn"/>
+      </div>
+      <div th:replace="left-section::left-section">
       </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <div id="right-section">
+        <div class="spinner-border text-dark" role="status" id="spinner" style="display: none; width: 3rem; height: 3rem; position: fixed; top: 50%; left: 50%;">
+          <span class="sr-only"></span>
+        </div>
         <div  id="diagram-image"></div>
       </div>
     </div>
   </div>
 </div>
-
+<footer class="footer bg-dark text-white mt-auto py-3">
+  <div class="container text-center">
+    <span>Copyright &copy; 2023 by Model Explorer</span>
+  </div>
+</footer>
+</div>
 </body>
-<script src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
-<script src="../static/js/dashboard.js" th:src="@{/js/dashboard.js}"></script>
+
 </html>

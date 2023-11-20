@@ -1,0 +1,9 @@
+<div id="left-section" th:fragment="left-section">
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center" th:each="model: ${models}" th:data-model-id="${model.id}" th:data-model-name="${model.name}">
+            <a href="#" class="model-link" th:text="${model.name}"></a>
+            <button class="del-btn" ></button>
+        </li>
+    </ul>
+</div>

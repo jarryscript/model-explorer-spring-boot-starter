@@ -9,9 +9,6 @@ spring:
       idle-timeout: 300000
       max-lifetime: 1800000
       pool-name: MyHikariPool
-server:
-  servlet:
-    context-path: /model-explorer
 
 model-explorer:
   enabled: true

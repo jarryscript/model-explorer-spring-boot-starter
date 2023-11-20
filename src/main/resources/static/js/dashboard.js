@@ -1,12 +1,67 @@
-  function showDiagram(clickedNode,content) {
+$(function() {
+    function showDiagram(clickedNode, modelId) {
 
-    document.getElementById("diagram-image").innerHTML = content;
-    var svgElement = document.getElementsByTagName('svg')[0]
-        svgElement.setAttribute("width", "100%");
-        svgElement.setAttribute("height", "100%");
-        svgElement.style='';
-   document.querySelectorAll('.list-group-item').forEach(function(el) {
-        el.classList.remove('bg-dark');
+    }
+
+    $('.model-link').on('click',function(e){
+       e.preventDefault();
+       var modelId = $(this).parent().data('model-id');
+       var url = `/model-explorer/model/${modelId}`
+       $("#spinner").show();
+       $.get(url).done(function(response){
+            $("#diagram-image").html(response.diagram);
+               var svgElement = $('svg').first();
+               svgElement.attr("width", "100%");
+               svgElement.attr("height", "100%");
+               svgElement.removeAttr("style");
+               $('.list-group-item').removeClass('bg-dark');
+               $(this).parent().addClass('bg-dark');
+       }).always(function() {
+             $("#spinner").hide();
+       });
     });
-    clickedNode.parentNode.classList.add('bg-dark');
-  }
+
+    $('.del-btn').on('click',function(e){
+        e.preventDefault();
+        var modelId = $(this).parent().data('model-id');
+         var modelName = $(this).parent().data('model-name')
+          if(confirm(`Are you sure to delete the model ${modelName}?`)) {
+                   var deleteUrl = `/model-explorer/model/${modelId}`
+                   $("#spinner").show();
+                   $.ajax({
+                       url: deleteUrl,
+                       type: 'DELETE',
+                       success: function(result) {
+                           window.location.reload();
+                       },
+                       always: function() {
+                           $("#spinner").hide();
+                       }
+                   });
+               }
+    })
+
+//     $('.reload-btn').on('click',function(e){
+//       e.preventDefault();
+//       $("#spinner").show();
+//       $.get(url).done(function(response){
+//        $("#diagram-image").html(response.diagram);
+//           var svgElement = $('svg').first();
+//           svgElement.attr("width", "100%");
+//           svgElement.attr("height", "100%");
+//           svgElement.removeAttr("style");
+//           $('.list-group-item').removeClass('bg-dark');
+//           $(this).parent().addClass('bg-dark');
+//       }).always(function() {
+//         $("#spinner").hide();
+//       });
+//    })
+
+    function reloadMenu(){
+        var url='';
+        $.get(url).success(function(result){
+            $('.left-section').replaceWith(result);
+        })
+    }
+
+});

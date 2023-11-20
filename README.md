@@ -15,7 +15,7 @@ implementation group: 'io.github.jarryzhou', name: 'model-explorer', version: '0
 ```
 
 Maven
-```xml
+```
 <dependency>
     <groupId>io.github.jarryzhou</groupId>
     <artifactId>model-explorer</artifactId>
