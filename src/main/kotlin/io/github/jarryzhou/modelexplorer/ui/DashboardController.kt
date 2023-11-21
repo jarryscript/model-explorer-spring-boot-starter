@@ -20,17 +20,23 @@ class DashboardController(private val modelService: ModelService) {
         return VIEW_MODEL_DASHBOARD
     }
 
-    @GetMapping("left-section")
-    fun leftSection(model: Model): String? {
-        modelService.reload()
+    @GetMapping("/left-section")
+    fun refreshLeftSection(model: Model): String? {
+        return getLeftSection(false, model)
+    }
+
+    @GetMapping("/left-section/reload")
+    fun reloadLeftSection(model: Model): String? {
+        return getLeftSection(true, model)
+    }
+
+    private fun getLeftSection(reload: Boolean, model: Model): String {
+        if (reload) {
+            modelService.reload()
+        }
         model.addAttribute(ATTRIBUTE_MODELS, modelService.loadAllModelInfo())
         return VIEW_MODEL_LEFT_SECTION
     }
-
-
-
-
-
 
 
 }
