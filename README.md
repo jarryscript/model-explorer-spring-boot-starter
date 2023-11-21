@@ -1,6 +1,6 @@
 # Model Explorer
 
-Model Explorer is a Kotlin project that scans specified packages, generates PlantUML class diagrams from the model classes and shows in a web UI. 
+Model Explorer scans specified packages, generates PlantUML class diagrams from source codes and shows in a web UI. 
 It provides ability to store the generated diagrams in the database, or simply show the current class diagram without using database for storage.
 
 Usually for projects which have evolving domain models, development team might need to check the progress of the evolving.
