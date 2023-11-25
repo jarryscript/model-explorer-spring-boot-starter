@@ -1,6 +1,6 @@
 package io.github.jarryzhou.modelexplorer.ui
 
-data class ModelDto(
+data class Model(
     val id: Long,
     val name: String, val info: String, val diagram: String
 )

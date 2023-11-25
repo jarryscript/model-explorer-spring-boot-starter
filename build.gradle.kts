@@ -33,7 +33,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-configuration-processor:3.1.5")
     implementation("org.springframework.boot:spring-boot-autoconfigure:3.1.5")
 
-
+//    testImplementation("org.springframework.boot:spring-boot-starter-test"){
+//        exclude(module = "mockito-core")
+//    }
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("com.ninja-squad:springmockk:4.0.0")
 }
 

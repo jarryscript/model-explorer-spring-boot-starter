@@ -17,7 +17,7 @@ class ModelController(private val modelService: ModelService) {
     }
 
     @GetMapping("/{id}")
-    fun getModelById(@PathVariable("id") id: Long): ResponseEntity<ModelDto> =
+    fun getModelById(@PathVariable("id") id: Long): ResponseEntity<Model> =
         ResponseEntity.ok(modelService.loadModelById(id))
 
 
