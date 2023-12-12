@@ -6,6 +6,7 @@ plugins {
     id("maven-publish")
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
+    id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
     jacoco
 }
 
@@ -41,7 +42,6 @@ dependencies {
     testImplementation("com.ninja-squad:springmockk:4.0.0")
 }
 
-
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "17"
@@ -63,4 +63,6 @@ publishing {
     }
 }
 
-
+tasks.withType<Test> {
+    useJUnitPlatform()
+}

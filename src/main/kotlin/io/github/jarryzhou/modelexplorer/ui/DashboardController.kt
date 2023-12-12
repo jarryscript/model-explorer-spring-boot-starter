@@ -37,6 +37,4 @@ class DashboardController(private val modelService: ModelService) {
         model.addAttribute(ATTRIBUTE_MODELS, modelService.loadAllModelInfo())
         return VIEW_MODEL_LEFT_SECTION
     }
-
-
 }

@@ -2,6 +2,7 @@ package io.github.jarryzhou.modelexplorer.modelrecorder
 
 import io.github.jarryzhou.modelexplorer.ui.Model
 import org.springframework.jdbc.core.JdbcTemplate
+import org.springframework.jdbc.core.RowMapper
 import org.springframework.stereotype.Repository
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
@@ -32,7 +33,6 @@ private const val SVG_PARAMETER_INDEX = 2
 
 private const val DATE_FORMAT = "dd/MM/yyyy HH:mm:ss"
 
-
 private const val DELETE_MODEL_SQL = "DELETE from $HISTORY_TABLE_NAME WHERE ID = ?"
 
 @Repository
@@ -53,27 +53,36 @@ class ModelRepository(val jdbcTemplate: JdbcTemplate) {
             Model(
                 id = rs.getLong(TABLE_FIELD_ID),
                 name = SimpleDateFormat(DATE_FORMAT).format(rs.getTimestamp(TABLE_FIELD_CREATE_TIME)),
-                diagram = toSvg(rs.getString(TABLE_FIELD_DIAGRAM)),
+                diagram = rs.getString(TABLE_FIELD_DIAGRAM),
                 info = ""
             )
         }, id)
 
-    fun deleteById(id:Long)=
-        jdbcTemplate.update(DELETE_MODEL_SQL,id)
-     fun doRecord(diagram: String) {
+    fun deleteById(id: Long) =
+        jdbcTemplate.update(DELETE_MODEL_SQL, id)
+    fun doRecord(diagram: String) {
         jdbcTemplate.update(INSERT_HISTORY_SQL) { ps ->
             ps.setTimestamp(CREATE_DATE_PARAMETER_INDEX, Timestamp(System.currentTimeMillis()))
             ps.setString(SVG_PARAMETER_INDEX, diagram)
         }
     }
 
-     fun getLastDiagram(): String? {
-        val result = jdbcTemplate.query(SELECT_LAST_DIAGRAM_SQL, RowMapper { rs, _ ->
-            return@RowMapper rs.getString(TABLE_FIELD_DIAGRAM)
-        })
+    fun getLastDiagram(): String? {
+        val result = jdbcTemplate.query(
+            SELECT_LAST_DIAGRAM_SQL,
+            RowMapper { rs, _ ->
+                return@RowMapper rs.getString(TABLE_FIELD_DIAGRAM)
+            }
+        )
         return result.firstOrNull()
     }
 
     private fun doesHistoryTableExist(): Boolean =
         jdbcTemplate.queryForObject(CHECK_HISTORY_TABLE_SQL, Boolean::class.java) ?: false
+
+    fun ensureModelHistoryTable() {
+        if (!doesHistoryTableExist()) {
+            jdbcTemplate.execute(HISTORY_TABLE_DDL)
+        }
+    }
 }
