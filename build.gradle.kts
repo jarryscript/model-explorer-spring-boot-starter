@@ -56,19 +56,22 @@ java {
     withSourcesJar()
 }
 
-signing {
-    useGpgCmd()
-    sign(publishing.publications)
-}
-
 publishing {
     publications {
-        create<MavenPublication>("maven") {
+        create<MavenPublication>("mavenJava") {
             groupId = group.toString()
             artifactId = "model-explorer"
             version = project.version.toString()
 
             from(components["java"])
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
             withType<MavenPublication> {
                 pom {
                     packaging = "jar"
@@ -98,7 +101,6 @@ publishing {
                     }
                 }
             }
-
         }
     }
     repositories {
@@ -113,6 +115,10 @@ publishing {
                 credentials(PasswordCredentials::class)
             }
         }
-
     }
+}
+
+signing {
+    useGpgCmd()
+    sign(publishing.publications["mavenJava"])
 }

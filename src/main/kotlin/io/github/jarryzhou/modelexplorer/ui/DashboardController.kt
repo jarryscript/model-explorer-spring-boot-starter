@@ -19,5 +19,4 @@ class DashboardController(private val modelService: ModelService) {
         model.addAttribute(ATTRIBUTE_DIAGRAM, modelService.generate())
         return VIEW_MODEL_DASHBOARD
     }
-
 }

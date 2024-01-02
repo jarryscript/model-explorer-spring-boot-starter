@@ -34,5 +34,4 @@ class ModelService(
                 ).build()
         ).generateDiagramText()
     }
-
 }
