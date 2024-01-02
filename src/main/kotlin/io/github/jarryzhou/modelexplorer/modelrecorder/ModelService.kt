@@ -11,30 +11,12 @@ import java.io.ByteArrayOutputStream
 
 @Component
 class ModelService(
-    private val modelRepository: ModelRepository,
     private val modelExplorerProperties: ModelExplorerProperties
 ) {
 
     private val logger = LoggerFactory.getLogger(ModelService::class.java)
 
-    fun reload() {
-        ensureModelHistoryTable()
-        val currentDiagram = generateDiagram()
-        if (shouldCreateNewRecord(currentDiagram)) {
-            logger.info("Changes found in models, creating new diagram")
-            modelRepository.doRecord(currentDiagram)
-        } else {
-            logger.info("No Changes in models.")
-        }
-    }
-
-    fun loadAllModelInfo() = modelRepository.findAllModels()
-    fun loadModelById(id: Long) = modelRepository.findById(id)?.let {
-        it.diagram = toSvg(it.diagram)
-        it
-    }
-
-    fun deleteById(id: Long) = modelRepository.deleteById(id)
+    fun generate() = toSvg(generateDiagram())
 
     private fun toSvg(plantUmlString: String): String {
         val reader = SourceStringReader(plantUmlString)
@@ -53,11 +35,4 @@ class ModelService(
         ).generateDiagramText()
     }
 
-    private fun shouldCreateNewRecord(currentDiagram: String): Boolean {
-        return !org.thymeleaf.util.StringUtils.equals(modelRepository.getLastDiagram(), currentDiagram)
-    }
-
-    private fun ensureModelHistoryTable() {
-        modelRepository.ensureModelHistoryTable()
-    }
 }

@@ -26,23 +26,7 @@
 
 <div class="container mt-5">
   <div class="row">
-    <div class="menu col-md-3">
-      <div class="d-flex align-items-center justify-content-between">
-        <h4>Diagrams</h4>
-        <button class="reload-btn"/>
-      </div>
-      <div th:replace="~{left-section::left-section}">
-      </div>
-    </div>
-    <div class="col-md-9">
-      <div id="right-section">
-        <button class="full-screen-btn float-end">Expand</button>
-        <div class="spinner-border text-dark" role="status" id="spinner" style="display: none; width: 3rem; height: 3rem; position: fixed; top: 50%; left: 50%;">
-          <span class="sr-only"></span>
-        </div>
-        <div  id="diagram-image"></div>
-      </div>
-    </div>
+        <div id="diagram-image" th:utext="${diagram}"></div>
   </div>
 </div>
 <footer class="footer bg-dark text-white mt-auto py-3">

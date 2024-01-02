@@ -1,1 +1,16 @@
-$(function(){function e(e){var t=`/model-explorer/left-section${e?"/reload":""}`;$.get(t).done(function(e){$(".left-section").replaceWith(e)}).always(function(){$("#spinner").hide()})}$(".menu").on("click",".model-link",function(e){e.preventDefault();var t=$(this).parent().data("model-id"),n=`/model-explorer/model/${t}`;$("#spinner").show(),$.get(n).done(function(e){$("#diagram-image").html(e.diagram);var n=$("svg").first();n.attr("width","100%"),n.attr("height","100%"),n.removeAttr("style"),$(".list-group-item").removeClass("bg-dark"),$(this).parent().addClass("bg-dark"),$("#right-section").data("selected",t),$(".full-screen-btn").show()}).always(function(){$("#spinner").hide()})}).on("click",".del-btn",function(t){t.preventDefault();var n=$(this).parent().data("model-id"),i=$(this).parent().data("model-name");if(confirm(`Are you sure to delete the model ${i}?`)){var a=`/model-explorer/model/${n}`;$("#spinner").show(),$.ajax({url:a,type:"DELETE",success:function(t){e(!1),n==$("#right-section").data("selected")&&($("#diagram-image").html(""),$(".full-screen-btn").hide())},always:function(){$("#spinner").hide()}})}}).on("click",".reload-btn",function(t){t.preventDefault(),e(!0)}),$(".full-screen-btn").on("click",function(e){e.preventDefault();var t=(new XMLSerializer).serializeToString($("svg").get(0)),n=new Blob([t],{type:"image/svg+xml;charset=utf-8"}),i=URL.createObjectURL(n);window.open(i,"_blank")})});
+$(function() {
+var n = $("svg").first();
+n.attr("width", "100%"), n.attr("height", "100%"), n.removeAttr("style");
+$('svg').on('click',function(e){
+ e.preventDefault();
+			var t = (new XMLSerializer)
+				.serializeToString($("svg")
+					.get(0)),
+				n = new Blob([t], {
+					type: "image/svg+xml;charset=utf-8"
+				}),
+				i = URL.createObjectURL(n);
+			window.open(i, "_blank")
+})
+
+});

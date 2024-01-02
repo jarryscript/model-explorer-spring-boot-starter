@@ -12,5 +12,4 @@ class ModelExplorerProperties {
     var hideClasses: List<String>? = emptyList()
     var activeProfiles: List<String>? = emptyList()
     var enabled: Boolean? = true
-    var persistHistory: Boolean? = true
 }
