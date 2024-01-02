@@ -4,15 +4,17 @@ plugins {
     id("org.springframework.boot") version "3.1.5"
     id("io.spring.dependency-management") version "1.1.3"
     id("maven-publish")
+    id("signing")
+    `java-library`
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
     jacoco
 }
 
+description = ""
 group = "io.github.jarryzhou"
-version = "0.1.0"
-
+version = "0.1.0-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
@@ -33,10 +35,6 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-configuration-processor:3.1.5")
     implementation("org.springframework.boot:spring-boot-autoconfigure:3.1.5")
-
-//    testImplementation("org.springframework.boot:spring-boot-starter-test"){
-//        exclude(module = "mockito-core")
-//    }
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("com.ninja-squad:springmockk:4.0.0")
@@ -49,20 +47,72 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+signing {
+    useGpgCmd()
+    sign(publishing.publications)
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "io.github.jarryzhou"
+            groupId = group.toString()
             artifactId = "model-explorer"
-            version = "0.1.0"
+            version = project.version.toString()
+
             from(components["java"])
+            withType<MavenPublication> {
+                pom {
+                    packaging = "jar"
+                    name.set("model-explorer-spring-boot-starter")
+                    description.set("Model Explorer is designed for checking domain models in runtime.")
+                    url.set("https://github.com/jarryscript/model-explorer-spring-boot-starter")
+                    licenses {
+                        license {
+                            name.set("The MIT License")
+                            url.set("http://opensource.org/licenses/MIT")
+                        }
+                    }
+                    issueManagement {
+                        system.set("Github")
+                        url.set("https://github.com/jarryscript/model-explorer-spring-boot-starter/issues")
+                    }
+                    scm {
+                        connection.set("scm:git:git://github.com/jarryscript/model-explorer-spring-boot-starter.git")
+                        developerConnection.set("scm:git:git@github.com/jarryscript/model-explorer-spring-boot-starter.git")
+                        url.set("https://github.com/jarryscript/model-explorer-spring-boot-starter")
+                    }
+                    developers {
+                        developer {
+                            name.set("Jarry Zhou")
+                            email.set("jarryzhow@qq.com")
+                        }
+                    }
+                }
+            }
+
         }
     }
     repositories {
-        mavenLocal()
-    }
-}
+        if (version.toString().endsWith("SNAPSHOT")) {
+            maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+                name = "sonatypeReleaseRepository"
+                credentials(PasswordCredentials::class)
+            }
+        } else {
+            maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                name = "sonatypeSnapshotRepository"
+                credentials(PasswordCredentials::class)
+            }
+        }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+    }
 }
