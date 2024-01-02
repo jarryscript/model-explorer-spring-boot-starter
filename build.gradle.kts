@@ -13,8 +13,8 @@ plugins {
 }
 
 description = ""
-group = "io.github.jarryzhou"
-version = "0.1.0-SNAPSHOT"
+group = "io.github.jarryscript"
+version = "0.1.0"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
@@ -88,7 +88,7 @@ publishing {
                     scm {
                         connection.set("scm:git:git://github.com/jarryscript/model-explorer-spring-boot-starter.git")
                         developerConnection.set("scm:git:git@github.com/jarryscript/model-explorer-spring-boot-starter.git")
-                        url.set("https://github.com/jarryscript/model-explorer-spring-boot-starter")
+                        url.set("https://github.com/jarryscript/model-explorer-spring-boot-starter.git")
                     }
                     developers {
                         developer {
@@ -104,12 +104,12 @@ publishing {
     repositories {
         if (version.toString().endsWith("SNAPSHOT")) {
             maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
-                name = "sonatypeReleaseRepository"
+                name = "sonatypeSnapshotRepository"
                 credentials(PasswordCredentials::class)
             }
         } else {
             maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                name = "sonatypeSnapshotRepository"
+                name = "sonatypeReleaseRepository"
                 credentials(PasswordCredentials::class)
             }
         }
