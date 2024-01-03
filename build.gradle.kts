@@ -5,7 +5,6 @@ plugins {
     id("io.spring.dependency-management") version "1.1.3"
     id("maven-publish")
     id("signing")
-    `java-library`
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
@@ -62,7 +61,7 @@ publishing {
             groupId = group.toString()
             artifactId = "model-explorer"
             version = project.version.toString()
-
+            artifact(tasks.named("bootJar"))
             from(components["java"])
             versionMapping {
                 usage("java-api") {
