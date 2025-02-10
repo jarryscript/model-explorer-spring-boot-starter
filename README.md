@@ -11,16 +11,20 @@ Model Explorer is designed for this goal.
 
 Gradle
 ```groovy
-implementation group: 'io.github.jarryzhou', name: 'model-explorer', version: '0.1.0'
+// https://mvnrepository.com/artifact/io.github.jarryscript/model-explorer
+implementation group: 'io.github.jarryscript', name: 'model-explorer', version: '0.1.0'
+
 ```
 
 Maven
 ```
+<!-- https://mvnrepository.com/artifact/io.github.jarryscript/model-explorer -->
 <dependency>
-    <groupId>io.github.jarryzhou</groupId>
+    <groupId>io.github.jarryscript</groupId>
     <artifactId>model-explorer</artifactId>
     <version>0.1.0</version>
 </dependency>
+
 ```
 
 2. Configure Model Explorer
